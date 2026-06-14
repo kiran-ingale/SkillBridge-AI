@@ -1,0 +1,318 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>SkillBridge AI</title>
+    <link rel="stylesheet" href="/static/styles.css?v=11" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="auth-screen" id="authScreen">
+        <div class="auth-panel">
+          <div class="brand-block">
+            <p class="eyebrow">SkillBridge AI</p>
+            <h1>Personal employability coach for engineering students.</h1>
+            <p class="hero-copy">
+              Diagnose readiness, prove skills with projects, practice interviews, and follow a gated plan that adapts to your target role.
+            </p>
+            <div class="hero-stats" aria-label="Platform highlights">
+              <div><strong>Role-based</strong><span>tests</span></div>
+              <div><strong>75+</strong><span>pass gate</span></div>
+              <div><strong>16 min</strong><span>mock interview</span></div>
+            </div>
+          </div>
+
+          <div class="auth-box">
+            <div class="auth-heading">
+              <h2>Enter workspace</h2>
+              <p>Use signup once, then login with the same account.</p>
+            </div>
+            <div class="tabs" role="tablist">
+              <button class="tab active" type="button" data-auth-mode="login">Login</button>
+              <button class="tab" type="button" data-auth-mode="signup">Sign up</button>
+            </div>
+            <form id="authForm">
+              <label>
+                Email
+                <input name="email" type="email" placeholder="student@example.com" required />
+              </label>
+              <label>
+                Password
+                <input name="password" type="password" minlength="6" placeholder="Minimum 6 characters" required />
+              </label>
+              <div id="authMessage" class="auth-message hidden"></div>
+              <button class="primary" type="submit" id="authSubmit">Login</button>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      <section class="workspace hidden" id="workspace">
+        <header class="topbar">
+          <div>
+            <p class="eyebrow">SkillBridge AI</p>
+            <h1 id="pageTitle">Student profile</h1>
+          </div>
+          <div class="topbar-actions">
+            <button class="icon-button chat-icon-button" type="button" id="chatToggleBtn" aria-label="Open coach chat">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M5 6.5C5 4.57 6.57 3 8.5 3h7C17.43 3 19 4.57 19 6.5v4.2c0 1.93-1.57 3.5-3.5 3.5h-4.28L7.4 17.36c-.58.48-1.45.07-1.45-.69V14.1A3.5 3.5 0 0 1 5 10.7V6.5Z" />
+                <path d="M8.5 7.2h7" />
+                <path d="M8.5 10.2h4.8" />
+              </svg>
+            </button>
+          </div>
+        </header>
+
+        <div class="app-grid">
+          <aside class="stepper" aria-label="Workflow">
+            <button class="step active" type="button" data-step="profile">
+              <span>1</span>
+              Profile
+            </button>
+            <button class="step" type="button" data-step="diagnosis">
+              <span>2</span>
+              Diagnosis
+            </button>
+            <button class="step" type="button" data-step="test">
+              <span>3</span>
+              Skill test
+            </button>
+            <button class="step" type="button" data-step="plan">
+              <span>4</span>
+              Plan & mentor
+            </button>
+            <button class="step" type="button" data-step="execute">
+              <span>5</span>
+              Execute
+            </button>
+            <button class="step" type="button" data-step="mock">
+              <span>6</span>
+              Mock interview
+            </button>
+            <div class="profile-card">
+              <strong id="profileCardName">Student</strong>
+              <a id="profileCardGithub" href="#" target="_blank" rel="noreferrer">GitHub not saved</a>
+              <a id="profileCardLinkedin" href="#" target="_blank" rel="noreferrer">LinkedIn not saved</a>
+              <button class="ghost" type="button" id="logoutBtn">Logout</button>
+            </div>
+          </aside>
+
+          <section class="surface">
+            <section class="view" id="profileView">
+              <form id="profileForm" class="form-grid">
+                <div class="section-title">
+                  <h2>Student details</h2>
+                  <span>Profile</span>
+                </div>
+
+                <div class="grid three">
+                  <label>
+                    Name
+                    <input name="name" value="Demo Student" required />
+                  </label>
+                  <label>
+                    Branch
+                    <input name="branch" value="AIML" required />
+                  </label>
+                  <label>
+                    Academic year
+                    <input name="academic_year" value="TE" required />
+                  </label>
+                </div>
+
+                <div class="grid three">
+                  <label>
+                    Location
+                    <input name="location" value="India" />
+                  </label>
+                  <label>
+                    Target role
+                    <select name="target_role" id="targetRole">
+                      <option value="backend_developer">Backend Developer</option>
+                      <option value="frontend_developer">Frontend Developer</option>
+                      <option value="data_analyst">Data Analyst</option>
+                      <option value="qa_engineer">QA Engineer</option>
+                      <option value="software_developer">Software Developer</option>
+                      <option value="embedded_iot_engineer">Embedded/IoT Engineer</option>
+                      <option value="cloud_devops_beginner">Cloud/DevOps Beginner</option>
+                    </select>
+                  </label>
+                  <label>
+                    Weekly available hours
+                    <input name="weekly_available_hours" type="number" min="1" max="80" value="15" />
+                  </label>
+                </div>
+
+                <div class="grid three">
+                  <label>
+                    Deadline in days
+                    <input name="requested_duration_days" type="number" min="1" max="365" value="30" />
+                  </label>
+                  <label>
+                    GitHub URL
+                    <input name="github_url" placeholder="https://github.com/username" />
+                  </label>
+                  <label>
+                    LinkedIn URL
+                    <input name="linkedin_url" placeholder="https://linkedin.com/in/username" />
+                  </label>
+                </div>
+
+                <div class="section-title">
+                  <h2>Resume</h2>
+                  <span>PDF or text</span>
+                </div>
+
+                <div class="grid two">
+                  <label>
+                    Resume PDF
+                    <input id="resumeFile" type="file" accept="application/pdf" />
+                  </label>
+                  <div class="button-stack">
+                    <button class="secondary" type="button" id="parseResumeBtn">Parse PDF</button>
+                  </div>
+                </div>
+
+                <label>
+                  Resume text
+                  <textarea name="resume_text" rows="8">Projects Skills Built and deployed Python API project with GitHub and dashboard. Developed REST API and analyzed data.</textarea>
+                </label>
+
+                <label>
+                  Existing project description
+                  <textarea name="project_description" rows="4">FastAPI REST API with PostgreSQL README tests deployment</textarea>
+                </label>
+
+                <button class="primary" type="submit">Create profile diagnosis</button>
+              </form>
+            </section>
+
+            <section class="view hidden" id="diagnosisView">
+              <div class="report-header">
+                <div>
+                  <p class="eyebrow">Profile diagnosis</p>
+                  <h2>Readiness before skill test</h2>
+                </div>
+                <button class="secondary inline" type="button" data-next-step="test">Take skill test</button>
+              </div>
+              <div id="profileReport" class="report-placeholder">No diagnosis yet.</div>
+            </section>
+
+            <section class="view hidden" id="testView">
+              <form id="testForm" class="form-grid">
+                <div class="section-title">
+                  <h2>Target-role skill test</h2>
+                  <span id="testRoleLabel">Role-based</span>
+                </div>
+                <div id="testQuestions" class="question-stack"></div>
+                <button class="primary" type="submit">Submit test and generate overall report</button>
+              </form>
+            </section>
+
+            <section class="view hidden" id="planView">
+              <div class="report-header">
+                <div>
+                  <p class="eyebrow">Overall report</p>
+                  <h2>Personalized plan and project mentor</h2>
+                </div>
+                <span class="diagnosis-id">Saved diagnosis: <span id="diagnosisId">not saved</span></span>
+              </div>
+
+              <div id="overallReport" class="report-placeholder">Complete the skill test to generate the overall report.</div>
+
+              <div class="mentor-panel hidden" id="mentorPanel">
+                <div class="section-title">
+                  <h2>Project mentor</h2>
+                  <span>First project</span>
+                </div>
+                <div class="project-box">
+                  <p class="project-title" id="projectTitle"></p>
+                  <ul id="projectCriteria"></ul>
+                </div>
+                <label>
+                  Your project idea
+                  <textarea id="projectIdea" rows="4" placeholder="Example: I want to build an attendance API for my college."></textarea>
+                </label>
+                <button class="secondary" type="button" id="mentorBriefBtn">Create mentor brief</button>
+                <div id="mentorBrief" class="mentor-brief hidden"></div>
+              </div>
+            </section>
+
+            <section class="view hidden" id="executeView">
+              <div class="report-header">
+                <div>
+                  <p class="eyebrow">Execution workspace</p>
+                  <h2 id="executionTitle">Choose a plan phase to execute</h2>
+                </div>
+                <button class="secondary inline" type="button" data-next-step="plan">Back to plan</button>
+              </div>
+
+              <div class="progress-panel">
+                <div>
+                  <span class="progress-label">Progress</span>
+                  <strong id="executionProgressText">0 of 0 tasks</strong>
+                </div>
+                <div class="progress-track">
+                  <div class="progress-fill" id="executionProgressFill"></div>
+                </div>
+              </div>
+
+              <div id="executionTasks" class="task-list">
+                <div class="report-placeholder">Use an Execute button from the plan to start.</div>
+              </div>
+
+              <div id="taskEvaluationPanel" class="task-evaluation hidden"></div>
+            </section>
+
+            <section class="view hidden" id="mockView">
+              <div class="report-header">
+                <div>
+                  <p class="eyebrow">AI mock interview</p>
+                  <h2>16-minute technical and communication interview</h2>
+                </div>
+                <button class="secondary inline" type="button" id="startMockInterviewBtn">Start interview</button>
+              </div>
+
+              <div class="interview-panel">
+                <div class="timer-card">
+                  <span>Interview timer</span>
+                  <strong id="mockTimer">16:00</strong>
+                  <small>Passing score: 75/100</small>
+                </div>
+                <div id="mockInterviewArea" class="report-placeholder">
+                  Start the interview after completing your profile or overall report. The AI will evaluate technical depth and communication clarity.
+                </div>
+              </div>
+            </section>
+
+          </section>
+        </div>
+
+        <aside class="chat-drawer hidden" id="chatDrawer" aria-label="Coach chat">
+          <div class="chat-drawer-header">
+            <div>
+              <p class="eyebrow">Personalized chatbot</p>
+              <h2>Coach chat</h2>
+            </div>
+            <button class="ghost" type="button" id="closeChatBtn">Close</button>
+          </div>
+          <div class="chat-shell">
+            <div id="chatMessages" class="chat-messages">
+              <div class="chat-bubble assistant">
+                I will use your target role, diagnosis, skill test, plan, and progress to guide you. Ask me what to do next.
+              </div>
+            </div>
+            <form id="coachChatForm" class="chat-form">
+              <textarea id="coachChatInput" rows="3" placeholder="Example: What should I do today based on my weakest area?" required></textarea>
+              <button class="primary" type="submit">Send</button>
+            </form>
+          </div>
+        </aside>
+      </section>
+    </main>
+
+    <script src="/static/app.js?v=11"></script>
+  </body>
+</html>
