@@ -1,6 +1,8 @@
 # SkillBridge AI
 
-Agentic employability coach for engineering students. It diagnoses job readiness from resume, GitHub, assessment answers, target role, and current market signals, then creates a personalized plan whose duration is estimated from the student's actual gaps.
+Agentic employability coach for engineering students and engineers. It diagnoses job readiness from resume, GitHub, LinkedIn progile, assessment answers, target role, and current market signals, then creates a personalized plan whose duration is estimated from the student's actual gaps. Ultimately makes tou completely job ready by providing tasks, tests, mock interviews and a personalised chatbot.
+
+Check it ot on: https://skillbridge-ai-kiran-20260614.netlify.app
 
 ## Setup
 
